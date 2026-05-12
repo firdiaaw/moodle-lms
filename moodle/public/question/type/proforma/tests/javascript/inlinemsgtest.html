@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- test environment for inlinemessages.js -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Codemirror-Test</title>
+
+    <link rel="stylesheet" href="../../styles.css">    
+    <script src="../../amd/src/codemirror.js"></script>
+    <script src="../../tests/javascript/testimport.js"></script>
+    <style>
+/*
+.proforma-feedback-msg-btn {
+  display:block;
+  border-radius: 5%;
+}
+*/
+    </style>
+    <script src="testimport.js"></script>
+    <link rel="stylesheet" href="../../amd/src/editor.css">
+</head>
+
+<body>
+
+
+<textarea id="editor" name="w3review" rows="20" cols="80">
+package de.ostfalia.zell.isPalindromTask;
+
+public class MyString 
+{
+	static public Boolean isPalindrom(String aString) 
+	{
+		String reverse = new StringBuilder(aString).reverse().toString();
+
+		return (aString.equalsIgnoreCase(reverse));
+	}
+}
+</textarea>
+
+
+<div id="m-id-test-proforma-2044604495-3" class="collapsibleregion" style="height: 123px;">
+    <div id="m-id-test-proforma-2044604495-3_sizer">
+        <div id="m-id-test-proforma-2044604495-3_caption" class="collapsibleregioncaption">
+            <a href="#" title="Zum Erweitern oder Einklappen tippen" id="yui_3_17_2_1_1613312798920_163">
+                <i class="icon fa fa-check text-success fa-fw " title="Richtig" aria-label="Richtig"></i> CheckStyle Test (17/17 %) 
+                </a>
+        </div>
+        <div id="m-id-test-proforma-2044604495-3_inner" class="collapsibleregioninner">
+            <div class="proforma_testlog_title"></div>
+            <pre class="proforma_testlog">Beginne Prüfung...
+    [ERROR] de/ostfalia/MyString.java:4:1: '{' an Position 1 sollte in der vorherigen Zeile stehen. [LeftCurly]
+    [ERROR] de/ostfalia/MyString.java:6:5: '{' an Position 5 sollte in der vorherigen Zeile stehen. [LeftCurly]
+    [INFO] de/ostfalia/MyString.java:8:5: Fake Meldung. [LeftCurly]
+    Prüfung beendet.
+</pre>
+        </div>
+    </div>
+</div>
+
+
+<textarea id="editor2" name="w3review2" rows="20" cols="80">
+    DAS IST WAS ANDERES package de.ostfalia.zell.isPalindromTask;
+    
+    public class MyString 
+    {
+        static public Boolean isPalindrom(String aString) 
+        {
+            String reverse = new StringBuilder(aString).reverse().toString();
+    
+            return (aString.equalsIgnoreCase(reverse));
+        }
+    }
+</textarea>
+
+<div id="m-id-test-proforma-2044604495-4" class="collapsibleregion" style="height: 123px;">
+    <div id="m-id-test-proforma-2044604495-4_sizer">
+        <div id="m-id-test-proforma-2044604495-4_caption" class="collapsibleregioncaption">
+            <a href="#" title="Zum Erweitern oder Einklappen tippen" id="yui_3_17_2_1_1613312798920_163">
+                <i class="icon fa fa-check text-success fa-fw " title="Richtig" aria-label="Richtig"></i> CheckStyle Test (17/17 %) 
+                </a>
+        </div>
+        <div id="m-id-test-proforma-2044604495-4_inner" class="collapsibleregioninner">
+            <div class="proforma_testlog_title"></div>
+            <pre class="proforma_testlog">Beginne Prüfung...
+    [WARN] de/ostfalia/MyString.java:1:5: '{' an Position 5 sollte in der vorherigen Zeile stehen. [LeftCurly]
+    [INFO] de/ostfalia/MyString.java:1:5: Fake Meldung. [LeftCurly]
+    [ERROR] de/ostfalia/MyString.java:3:1: '{' an Position 1 sollte in der vorherigen Zeile stehen. [LeftCurly]
+    [SOMETHINGELSE] de/ostfalia/MyString.java:5:1: '{' an Position 1 sollte in der vorherigen Zeile stehen. [LeftCurly]
+    Prüfung beendet.
+        </pre>
+        </div>
+    </div>
+</div>
+
+<textarea id="editor3" name="w3review3" rows="20" cols="80">
+/* Musterlösung */
+operation := procedure(a,b){
+    retur a*b;
+};
+menge1 := {0,1}
+menge2 := {0,1,2};
+# hallo
+</textarea>
+
+<div id="m-id-test-proforma-2044604495-5" class="collapsibleregion" style="height: 123px;">
+    <div id="m-id-test-proforma-2044604495-5_sizer">
+        <div id="m-id-test-proforma-2044604495-5_caption" class="collapsibleregioncaption">
+            <a href="#" title="Zum Erweitern oder Einklappen tippen" id="yui_3_17_2_1_1613312798920_163">
+                <i class="icon fa fa-check text-success fa-fw " title="Richtig" aria-label="Richtig"></i> Setlx (17/17 %) 
+                </a>
+        </div>
+        <div id="m-id-test-proforma-2044604495-5_inner" class="collapsibleregioninner">
+            <div class="proforma_testlog_title"></div>
+            <pre class="proforma_testlog">line 3:11 no viable alternative at input &#39;retura&#39;
+line 6:1 mismatched input &#39;menge2&#39; expecting !=, %, &amp;&amp;, *, */, +, +/, -, /, ;, &lt;, &lt;!=&gt;, &lt;=, &lt;==&gt;, ==, =&gt;, &gt;, &gt;&lt;, &gt;=, \, ||, in, notin
+line 8:1 mismatched input &#39;ist_Abgeschlossen&#39; expecting !, !=, %, &amp;&amp;, (, *, **, */, +, +/, -, ., /, ;, &lt;, &lt;!=&gt;, &lt;=, &lt;==&gt;, ==, =&gt;, &gt;, &gt;&lt;, &gt;=, [, \, {, ||, in, notin
+3 syntax error(s) encountered.
+        </pre>
+        </div>
+    </div>
+</div>
+
+
+
+<h2>C++</h2>
+
+<textarea id="editor4" name="compile_cpp" rows="20" cols="80">
+    #include <math.h>
+ 
+    double squareRoot(const double a) { hh
+        double b = sqrt(a);
+        if(b != b) {
+            return -1.0;
+        }else{
+            return sqrt(a);
+        }
+     } 
+    </textarea>
+    
+    <div id="m-id-test-proforma-56-5" class="collapsibleregion" style="height: 123px;">
+        <div id="m-id-test-proforma-56-5_sizer">
+            <div id="m-id-test-proforma-56-5_caption" class="collapsibleregioncaption">
+                <a href="#" title="Zum Erweitern oder Einklappen tippen" id="yui_3_17_2_1_1613312798920_163">
+                    <i class="icon fa fa-check text-success fa-fw " title="Richtig" aria-label="Richtig"></i> C++ (../17 %) 
+                    </a>
+            </div>
+            <div id="m-id-test-proforma-56-5_inner" class="collapsibleregioninner">
+                <div class="proforma_testlog_title"></div>
+                <pre class="proforma_testlog">[ 50%] Building CXX object CMakeFiles/runTests.dir/tests.cpp.o
+                    In file included from tests.cpp:3:
+                    squareroot.cpp: In function ‘double squareRoot(double)’:
+                    squareroot.cpp:4:37: error: ‘hh’ was not declared in this scope
+                        4 | double squareRoot(const double a) { hh
+                          |                                     ^~
+                    squareroot.cpp:6:8: error: ‘b’ was not declared in this scope
+                        6 |     if(b != b) {
+                          |        ^
+                    squareroot.cpp:11:1: warning: control reaches end of non-void function [-Wreturn-type]
+                       11 | }
+                          | ^
+                    make[2]: *** [CMakeFiles/runTests.dir/build.make:63: CMakeFiles/runTests.dir/tests.cpp.o] Error 1
+                    make[1]: *** [CMakeFiles/Makefile2:76: CMakeFiles/runTests.dir/all] Error 2
+                    make: *** [Makefile:84: all] Error 2
+            </pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

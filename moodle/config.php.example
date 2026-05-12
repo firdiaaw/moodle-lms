@@ -1,0 +1,57 @@
+<?php
+///////////////////////////////////////////////////////////////////////////
+// Moodle configuration file for CLI                                     //
+///////////////////////////////////////////////////////////////////////////
+
+unset($CFG);
+global $CFG;
+$CFG = new stdClass();
+
+//=========================================================================
+// 1. DATABASE SETUP
+//=========================================================================
+$CFG->dbtype    = 'mysqli';
+$CFG->dblibrary = 'native';
+$CFG->dbhost    = 'localhost';
+$CFG->dbname    = 'moodle_lms';
+$CFG->dbuser    = 'YOUR_DB_USER';           // Ganti dengan username database kamu
+$CFG->dbpass    = 'YOUR_DB_PASSWORD';       // Ganti dengan password database kamu
+$CFG->prefix    = 'mdl_';
+$CFG->dboptions = [
+    'dbpersist' => false,
+    'dbsocket'  => false,
+    'dbport'    => '',
+    'dbcollation' => 'utf8mb4_unicode_ci',
+];
+
+//=========================================================================
+// 2. WEB SITE LOCATION
+//=========================================================================
+$CFG->wwwroot   = 'http://localhost:8080';
+
+//=========================================================================
+// 3. DATA FILES LOCATION
+//=========================================================================
+$CFG->dataroot  = getenv('HOME') . '/moodledata';
+
+//=========================================================================
+// 4. DATA FILES PERMISSIONS
+//=========================================================================
+$CFG->directorypermissions = 02777;
+
+//=========================================================================
+// 5. ADMIN DIRECTORY
+//=========================================================================
+$CFG->admin = 'admin';
+
+//=========================================================================
+// 6. ADDITIONAL SETTINGS
+//=========================================================================
+date_default_timezone_set('Asia/Jakarta');
+$CFG->debug = E_ALL & ~E_NOTICE & ~E_USER_NOTICE;
+$CFG->debugdisplay = 0;
+
+// Dirroot untuk CLI - pointing ke public folder
+$CFG->dirroot = __DIR__ . '/public';
+
+require_once(__DIR__ . '/lib/setup.php');

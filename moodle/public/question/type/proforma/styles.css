@@ -1,0 +1,1086 @@
+/* Styles for Task editor */
+
+:root {
+    --labelwith: 150px;
+    --inputwidth: calc(98% - var(--labelwith));
+}
+
+.proforma-taskeditor{
+    /*font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+    font-size: 90%;*/
+    /*font-size: 62.5%;*/
+    /* background-color: #F7F7F7;*/
+    /* background-color: orangered;*/
+}
+
+/* Codemirror file editor */
+.proforma-taskeditor .xml_file_text + .CodeMirror{
+    vertical-align: top;
+    display: inline-block;
+    width: var(--inputwidth);
+    /*background-color: green;*/
+    resize: vertical; /* user can resize vertically, but width is fixed */
+}
+
+/* required icon: align right, flex is better... */
+.proforma-taskeditor .fa-exclamation-circle {
+    float: right;
+    /*vertical-align: middle;*/
+    /* display: inline;*/
+}
+
+.proforma-taskeditor .xml_fileref_table { /* stretch viewer */
+    width: 100%;
+    /* background-color: yellow;*/
+}
+.proforma-taskeditor .fileref_viewer {
+    width: 99% /* var(--inputwidth)*/;
+    /* float: right;*/
+    background-color: #F7F7F7;
+}
+
+.proforma-taskeditor .form-control {
+    display: inline;
+}
+
+/* first column should have label width */
+.proforma-taskeditor .xml_fileref_table td:first-child, .dynamic_table td:first-child {
+    /*background-color: blue;*/
+    width: var(--labelwith);
+}
+.proforma-taskeditor .xml_fileref_table td {
+    /*background-color: green;*/
+    width: 1px;
+} /* min width, actually: this causes the width to fit the content */
+
+.proforma-taskeditor .xml_fileref_table td:last-child { width: var(--inputwidth); }
+
+
+.taskeditor-buttons .fullscreen i {
+    margin-right: 0;
+/*    display:flex; */
+}
+
+body .proforma-taskeditor .test-header {
+    display: block;
+    cursor: move;
+    width: 100%;
+    /*background: red;*/
+}
+body .proforma-taskeditor .test-header label {
+    cursor: move;
+}
+
+/* enable scrolling in taskeditor with fullscreen */
+body .proforma-taskeditor:fullscreen {
+    height: 100%;
+    overflow: auto;
+    /* set background colour otherwise it will be set to dark in dark mode */
+    background-color: white;
+    margin: 2rem;
+    padding: 3rem;
+}
+
+/*
+should make tabs fixed in fullscreen mode, but does not work
+.proforma-taskeditor .nav-tabs .fullscreen {
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    z-index:1030
+}
+*/
+
+body .proforma-taskeditor .box-typ {
+    display: inline-block;
+    /* width: var(--labelwith); */
+    text-align: left;
+    font-weight: 700;
+    /* padding-left:0.3em;*/
+    /* line-height: 1.5;*/
+}
+
+.proforma-taskeditor .xml_test,
+.proforma-taskeditor .xml_file,
+.proforma-taskeditor .xml_model-solution {
+   background: #e9ecef;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    margin-bottom: 1em;
+}
+
+/* left side labels */
+.proforma-taskeditor p label:first-child,
+.proforma-taskeditor br + label,
+.proforma-taskeditor .xml_file_non_binary label {
+    /*background-color: red;*/
+/*    display: inline-block;
+    width: var(--labelwith);
+    text-align: left;*/
+}
+
+
+.proforma-taskeditor .xml_fileref_table td,
+.proforma-taskeditor .dynamic_table td {
+    padding-left:0.1em;
+}
+
+/* first column should have label width and be more indented  */
+.proforma-taskeditor p label:first-child,
+.proforma-taskeditor br + label,
+.proforma-taskeditor .xml_file_non_binary label,
+.proforma-taskeditor .test-header label,
+
+.proforma-taskeditor .xml_fileref_table td:first-child,
+.proforma-taskeditor .dynamic_table td:first-child {
+    /* background-color: lightskyblue; */
+    width: var(--labelwith);
+    /*padding-left: 0.3em;*/
+    text-align: left;
+    vertical-align: top;
+}
+
+
+
+/* use bold font for unit test label */
+/* body#page-question-type-proforma p[id^=fgroup_id_testfile_][id*=label] { */
+body#page-question-type-proforma.xml_filename_header {
+    font-weight: bold;
+}
+
+body#page-question-type-proforma p[id^=file_][id*=label] {
+    font-weight: bold;
+}
+
+
+/* dummy position needed in order to position close button */
+.proforma-taskeditor .xml_file_non_binary {
+    position: relative;
+    top: 0px;
+}
+
+
+.proforma-taskeditor .maxinput{
+    vertical-align: middle;
+    width: var(--inputwidth);
+}
+.proforma-taskeditor .largeinput{
+    vertical-align: middle;
+    width: 80%;
+}
+.proforma-taskeditor .mediuminput{	width: 40%;     }
+.proforma-taskeditor .shortinput{	width: 10%;     }
+.proforma-taskeditor .tinyinput{		width: 5%;     }
+
+.proforma-taskeditor .rightButton{	float:right   }
+
+/* .proforma-taskeditor p { padding-left:0.3em;  } */
+
+.proforma-taskeditor .drop_zone_text {
+    float:right; 	font-size: 65%;
+}
+
+.proforma-taskeditor .xml_restrict_filename { width: 400px; }
+
+.proforma-taskeditor .fileref_filename{	width: 400px;     }
+.proforma-taskeditor .fileref_fileref{	width: 50px;     }
+
+/* Styles for explorer */
+
+/* In order to have those Styles in the question history review
+they need to be defined in the global proforma style settings
+ */
+
+.que.proforma ul[role="tree"] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 90%;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+.que.proforma ul[role="group"] {
+    padding-left: 20px;
+}
+
+.que.proforma [role="treeitem"].doc::before {
+    /* document icon from https://css.gg/file-document (MIT license)
+    Copyright 2019-2020 css.gg */
+    content: url("data:image/svg+xml;utf8,<svg \
+    width='18' \
+    height='18' \
+    viewBox='0 0 24 24' \
+    fill='none' \
+    xmlns='http://www.w3.org/2000/svg'> \
+    <path d='M7 18H17V16H7V18Z' fill='lightgrey' /> \
+    <path d='M17 14H7V12H17V14Z' fill='lightgrey' /> \
+    <path d='M7 10H11V8H7V10Z' fill='lightgrey' /> \
+    <path \
+    fill-rule='evenodd' \
+    clip-rule='evenodd' \
+    d='M6 2C4.34315 2 3 3.34315 3 5V19C3 20.6569 4.34315 22 6 22H18C19.6569 22 21 20.6569 21 19V9C21 5.13401 17.866 2 14 2H6ZM6 4H13V9H19V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V5C5 4.44772 5.44772 4 6 4ZM15 4.10002C16.6113 4.4271 17.9413 5.52906 18.584 7H15V4.10002Z' \
+    fill='lightgrey' \
+    /> \
+    </svg>");
+
+    display: inline;
+    padding-right: 2px;
+    /* padding-left: 5px; */
+    vertical-align: middle;
+}
+
+.que.proforma [role="treeitem"][aria-expanded="false"] > ul {
+    display: none;
+}
+
+.que.proforma [role="treeitem"][aria-expanded="true"] > ul {
+    display: block;
+}
+
+.que.proforma [role="treeitem"][aria-expanded="false"] > .name::before {
+    /* COLLECTION: Akar Interface Icons
+    LICENSE: MIT License
+    AUTHOR: artcoholic
+    from https://www.svgrepo.com/svg/378615/folder */
+    content: url("data:image/svg+xml;utf8, <svg \
+        width='17' height='17' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'> \
+        <path d='M22 19V9C22 7.89543 21.1046 7 20 7H13.2361C12.4785 7 11.786 6.572 11.4472 5.89443L10.5528 4.10557C10.214 3.428 9.52148 3 8.76393 3H4C2.89543 3 2 3.89543 2 5V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19Z' \
+        stroke='lightgrey' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/> \
+    </svg>" );
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+}
+.que.proforma [role="treeitem"][aria-expanded="true"] > .name::before {
+    /* COLLECTION: Fluent Ui Icons Outlined
+    LICENSE: MIT License
+    AUTHOR: Microsoft
+    from https://www.svgrepo.com/svg/309636/folder-open */
+    content: url("data:image/svg+xml;utf8, <svg \
+        width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'> \
+    <path d='M20 9.50195V8.74985C20 7.50721 18.9926 6.49985 17.75 6.49985H12.0247L9.64368 4.51995C9.23959 \
+    4.18393 8.73063 3.99997 8.20509 3.99997H4.24957C3.00724 3.99997 2 5.00686 1.99957 6.24919L1.99561 \
+    17.7492C1.99518 18.9921 3.00266 20 4.24561 20H4.27196C4.27607 20 4.28019 20 4.28431 20H18.4693C19.2723 \
+    20 19.9723 19.4535 20.167 18.6745L21.9169 11.6765C22.1931 10.5719 21.3577 9.50195 20.2192 \
+    9.50195H20ZM4.24957 5.49997H8.20509C8.38027 5.49997 8.54993 5.56129 8.68462 5.6733L11.2741 \
+    7.82652C11.4088 7.93852 11.5784 7.99985 11.7536 7.99985H17.75C18.1642 7.99985 18.5 8.33563 18.5 \
+    8.74985V9.50195H6.42385C5.39136 9.50195 4.49137 10.2047 4.241 11.2064L3.49684 14.1837L3.49957 \
+    6.24971C3.49971 5.8356 3.83546 5.49997 4.24957 5.49997ZM5.69623 11.5701C5.77969 11.2362 6.07969 \
+    11.002 6.42385 11.002H20.2192C20.3819 11.002 20.5012 11.1548 20.4617 11.3126L18.7119 18.3107C18.684 \
+    18.4219 18.584 18.5 18.4693 18.5H4.28431C4.12167 18.5 4.00233 18.3472 4.04177 18.1894L5.69623 11.5701Z' fill='lightgrey'/> \
+    </svg>");
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+}
+
+.que.proforma [role="treeitem"] span,
+.que.proforma [role="treeitem"] {
+    min-width: fit-content;
+    margin: 0;
+    padding: 0; /* Vertical distance between items */
+    /*    padding: 0.1em; *//* Vertical distance between items */
+    border: 0px transparent solid;
+    display: block;
+
+}
+
+/* Indent for all treeitems but first level */
+/* Default indentation is much too large */
+.que.proforma [role="treeitem"] [role="treeitem"] {
+    /* editortest:    margin-left: -20px; */
+    margin-left: 0;
+}
+
+/* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+.que.proforma [role="treeitem"]:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+
+.que.proforma [role="treeitem"].focus.doc,
+.que.proforma [role="treeitem"].focus > span {
+    background-color: steelblue;
+    border: 0;
+    box-shadow: 0 0 0 0;
+    color: whitesmoke;
+}
+
+/*
+[role="treeitem"].hover,
+[role="treeitem"] span:hover {
+    width: 10em;
+    background-color: #ddd;
+}*/
+
+
+[role="treeitem"].dragover,
+[role="treeitem"] span.dragover {
+    /*    width: 10em;*/
+    background-color: lightsteelblue;
+    color: black;
+}
+
+/* Split view */
+
+/*
+.split {
+    display: flex;
+    border: 1px black solid;
+    width: 100%;
+    min-height: 400px;
+}
+*/
+
+
+/* From Codemirror theme darcula: #2B2B2B */
+.que.proforma .ide .explorer {
+    background-color: #2b2b2b;
+    color: #a9b7c6;
+}
+
+.que.proforma .ide .menu,
+.que.proforma .ide .status,
+.que.proforma .ide .tabs,
+.que.proforma .ide .tab {
+    background-color: lightgrey;
+}
+
+
+.que.proforma .ide .resize {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 0.15rem;
+    cursor: col-resize;
+    margin: 0 0 0 auto;
+}
+
+.que.proforma .ide .CodeMirror {
+    font-size: 90%;
+}
+
+/* Editor tabs */
+.que.proforma .ide .tab {
+    border-radius: 3px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: dimgrey;
+    border-bottom: 0;
+    border-width: 1px;
+}
+.que.proforma .ide .tab .close:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.que.proforma .ide .tab.focus {
+    background-color: #eee;
+}
+
+.que.proforma .ide .tab .close {
+    font-size: 80%;
+    font-weight: 100;
+    padding: 0 2px 0 2px;
+    margin: 0 0 0 2px;
+    vertical-align: baseline;
+    border-radius: 1px;
+    float: none; /* needed to override value from Moodle, otherwise vertical-align is not applied */
+}
+
+/* Styles for feedback messages */
+
+/* button */
+
+.proforma-feedback-msg-btn {
+    color: #212529;
+    background: #ced4da;
+    border: 1px solid #ccc;
+    /* padding: 10px 30px;*/
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.proforma-feedback-msg-btn.active {
+    background: #b8c1ca;
+}
+
+/* icons */
+
+.proforma-inline-error,
+.proforma-inline-warning,
+.proforma-inline-info {
+    font-family: arial;
+    font-size: 70%;
+    background: #ffa;
+    padding: 2px 5px 3px;
+}
+
+.proforma-inline-error {
+    color: #a00;
+}
+
+.proforma-dot-icon {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    /* vertical-align: middle;*/
+    line-height: 14px;
+    box-shadow: #999 0 1px 1px;
+}
+
+.proforma-error-icon {
+    font-family: Helvetica, Arial, Sans-Serif;
+    background-color: rgb(165, 25, 25);
+    color: white;
+}
+
+.proforma-info-icon {
+    font-family: "Times New Roman", "Garamond", serif;
+    font-size: 70%;
+    background-color: blue;
+    color: white;
+    position: relative;
+    top: -0.14em;
+}
+
+.proforma-else-icon {
+    font-family: "Times New Roman", "Garamond", serif;
+    font-size: 70%;
+    background-color: black;
+    color: white;
+    position: relative;
+    top: -0.14em;
+}
+
+/* warning symbol
+from https://codepen.io/cksachdev/pen/YNPmqe */
+/* http://www.karimnassar.com/code/web/css-icons/ */
+.proforma-warn-icon,
+.proforma-warn-icon::before,
+.proforma-warn-icon::after {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.proforma-warn-icon {
+    height: 14px;
+    width: 14px;
+    font-size: 12px;
+    color: transparent;
+}
+
+.proforma-warn-icon.proforma-warning {
+    display: inline-block;
+    top: 0.2em;
+
+    overflow: hidden;
+    border: none;
+    background-color: transparent;
+    border-radius: 0.625em;
+}
+
+
+.proforma-warn-icon.proforma-warning::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -0.08em;
+    left: 0;
+    border: transparent 0.6em solid;
+    border-bottom-color: #fd3;
+    border-bottom-width: 1em;
+    border-top-width: 0;
+    box-shadow: #999 0 1px 1px;
+}
+
+.proforma-warn-icon.proforma-warning::after {
+    content: "!";
+    display: block;
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    width: 100%;
+    padding: 0 1px;
+    text-align: center;
+    font-family: "Garamond";
+    font-size: 0.65em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* default color is red for code (in log message box), switch to something like black */
+code#proforma-modal-message {
+    color: #111111;
+}
+
+/* Styles for the editing form. */
+
+/* align elements in title line in a row */
+body#page-question-type-proforma div[id^=fgroup_id_testoptions_] div.fitem,
+body#page-question-type-proforma div[id^=fgroup_id_checkstyleoptions] div.fitem
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+/* first field */
+body#page-question-type-proforma div[id^=fgroup_id_testoptions_] {
+    margin-top: 1em;
+    /*background: #ced4da;*/
+    background: #e9ecef;
+    margin-bottom: 0;
+    padding-bottom: 0.1em;
+    padding-top: 0.3em;
+}
+
+
+/* last field */
+body#page-question-type-proforma div[id^=fitem_id_testentrypoint],
+body#page-question-type-proforma div[id^=fitem_id_testcode] {
+/*    margin-top: 0;*/
+    padding-bottom: 0.3em;
+    margin-bottom: 1em;
+}
+
+
+/* mid field and last fields */
+body#page-question-type-proforma div[id^=fgroup_id_testcode] /*:not([id^=fgroup_id_testoptions_])*/,
+body#page-question-type-proforma div[id^=fitem_id_test] {
+    margin-top: -1.2em;
+    padding-top: 0.3em;
+    background: #e9ecef;
+}
+/* mid fields */
+/* as fitem_id_testcode and fitem_id_testentrypoint also begin with fitem_id_test
+   they have to be excluded.
+ */
+body#page-question-type-proforma div[id^=fgroup_id_testcode] /*:not([id^=fgroup_id_testoptions_])*/,
+body#page-question-type-proforma div[id^=fitem_id_test]:not([id^=fitem_id_testcode]):not([id^=fitem_id_testentrypoint]) {
+    margin-bottom: 0.1em;
+    padding-bottom: 0;
+}
+
+
+/* workaround for not detecting the last element */
+body#page-question-type-proforma div[id^=fitem_id_penalty] {
+    margin-top: 1em;
+}
+
+
+/* use bold font for unit test label */
+body#page-question-type-proforma p[id^=fgroup_id_testoptions_][id*=label] {
+    font-weight: bold;
+}
+
+/* Styles for feedback. */
+.que.proforma textarea.qtype_proforma_response {
+    width: 100%;
+}
+
+/* no space after pre text */
+.specificfeedback pre {
+    margin-bottom: 0.1rem; /* instead of 1rm */
+}
+
+
+.que.proforma textarea.qtype_proforma_response.qtype_proforma_editor {
+    white-space: pre;
+    font-family: "Andale Mono", Monaco, "Courier New", "DejaVu Sans Mono", monospace;
+}
+
+.que.proforma .qtype_proforma_response {
+    min-height: 3em;
+}
+
+.que.proforma .qtype_proforma_response.readonly {
+    background-color: white;
+}
+
+.que.proforma div.qtype_proforma_response textarea {
+    width: 100%;
+}
+
+.proforma_general.proforma_html {
+    /*padding-left: 0.1cm;*/
+}
+.proforma_general:not(.proforma_html) {
+    /*padding-left: 0.1cm;*/
+    font-family: "Andale Mono", Monaco, "Courier New", "DejaVu Sans Mono", monospace;
+    white-space: pre;
+}
+
+/* Feedback formats for testlogs not using subtests */
+.proforma_testlog_title {
+    padding-left: 28px;
+}
+.proforma_testlog_description {
+    padding-left: 28px;
+}
+.proforma_testlog.proforma_html {
+    padding-left: 28px;
+}
+.proforma_testlog:not(.proforma_html) {
+    padding-left: 28px;
+    font-family: "Andale Mono", Monaco, "Courier New", "DejaVu Sans Mono", monospace;
+    white-space: pre;
+}
+
+
+/* Feedback formats for subtests */
+.proforma_subtest_title { /* with icon */
+    padding-left: 28px;
+    /*font-size: 0.73em;*/
+}
+.proforma_subtest_title_2 { /* without icon */
+    padding-left: 52px;
+    /*font-size: 0.73em;*/
+}
+.proforma_subtest_testlog.proforma_html {
+    /*font-size: 0.73em;*/
+    padding-left: 52px;
+}
+.proforma_subtest_testlog:not(.proforma_html) {
+    /*font-size: 0.73em;*/
+    padding-left: 52px;
+    font-family: "Andale Mono", Monaco, "Courier New", "DejaVu Sans Mono", monospace;
+    white-space: pre;
+}
+
+.fail {
+    color: #f00;
+}
+.pass {
+    color: #080;
+}
+
+/*
+.que.proforma textarea.qtype_proforma_response {
+    background-color: red;
+}
+*/
+
+/**
+CodeMirror specific styles
+ */
+
+/**
+    Name: IntelliJ IDEA darcula theme
+    From IntelliJ IDEA by JetBrains
+ */
+
+.cm-s-darcula  { font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;}
+.cm-s-darcula.CodeMirror { background: #2B2B2B; color: #A9B7C6; }
+
+.cm-s-darcula span.cm-meta { color: #BBB529; }
+.cm-s-darcula span.cm-number { color: #6897BB; }
+.cm-s-darcula span.cm-keyword { color: #CC7832; line-height: 1em; font-weight: bold; }
+.cm-s-darcula span.cm-def { color: #A9B7C6; font-style: italic; }
+.cm-s-darcula span.cm-variable { color: #A9B7C6; }
+.cm-s-darcula span.cm-variable-2 { color: #A9B7C6; }
+.cm-s-darcula span.cm-variable-3 { color: #9876AA; }
+.cm-s-darcula span.cm-type { color: #AABBCC; font-weight: bold; }
+.cm-s-darcula span.cm-property { color: #FFC66D; }
+.cm-s-darcula span.cm-operator { color: #A9B7C6; }
+.cm-s-darcula span.cm-string { color: #6A8759; }
+.cm-s-darcula span.cm-string-2 { color: #6A8759; }
+.cm-s-darcula span.cm-comment { color: #61A151; font-style: italic; }
+.cm-s-darcula span.cm-link { color: #CC7832; }
+.cm-s-darcula span.cm-atom { color: #CC7832; }
+.cm-s-darcula span.cm-error { color: #BC3F3C; }
+.cm-s-darcula span.cm-tag { color: #629755; font-weight: bold; font-style: italic; text-decoration: underline; }
+.cm-s-darcula span.cm-attribute { color: #6897bb; }
+.cm-s-darcula span.cm-qualifier { color: #6A8759; }
+.cm-s-darcula span.cm-bracket { color: #A9B7C6; }
+.cm-s-darcula span.cm-builtin { color: #FF9E59; }
+.cm-s-darcula span.cm-special { color: #FF9E59; }
+.cm-s-darcula span.cm-matchhighlight { color: #FFFFFF; background-color: rgba(50, 89, 48, .7); font-weight: normal;}
+.cm-s-darcula span.cm-searching { color: #FFFFFF; background-color: rgba(61, 115, 59, .7); font-weight: normal;}
+
+.cm-s-darcula .CodeMirror-cursor { border-left: 1px solid #A9B7C6; }
+.cm-s-darcula .CodeMirror-activeline-background { background: #323232; }
+.cm-s-darcula .CodeMirror-gutters { background: #313335; border-right: 1px solid #313335; }
+.cm-s-darcula .CodeMirror-guttermarker { color: #FFEE80; }
+.cm-s-darcula .CodeMirror-guttermarker-subtle { color: #D0D0D0; }
+.cm-s-darcula .CodeMirrir-linenumber { color: #606366; }
+.cm-s-darcula .CodeMirror-matchingbracket { background-color: #3B514D; color: #FFEF28 !important; font-weight: bold; }
+
+.cm-s-darcula div.CodeMirror-selected { background: #214283; }
+
+.CodeMirror-hints.darcula {
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    color: #9C9E9E;
+    background-color: #3B3E3F !important;
+}
+
+.CodeMirror-hints.darcula .CodeMirror-hint-active {
+    background-color: #494D4E !important;
+    color: #9C9E9E !important;
+}
+
+/* BASICS */
+.CodeMirror {
+    /* Set height, width, borders, and global font properties here */
+    font-family: monospace;
+    height: 350px;
+    direction: ltr;
+    border: solid 1px #ced4da; /* NEW TODO: should be derived from Moodle!!  form-control */
+    /*resize: vertical;*/
+}
+
+/*
+.CodeMirror {
+    resize: vertical;
+    overflow: auto !important;
+}
+*/
+
+/* do not use stylelint from now on (code is copied from CodeMirror) */
+/* stylelint-disable */
+
+/* PADDING */
+
+.CodeMirror-lines {
+    padding: 4px 0; /* Vertical padding around content */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+    padding: 0 4px; /* Horizontal padding of content */
+}
+
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+    background-color: white; /* The little square between H and V scrollbars */
+}
+
+/* GUTTER */
+
+.CodeMirror-gutters {
+    border-right: 1px solid #ddd;
+    background-color: #f7f7f7;
+    white-space: nowrap;
+}
+.CodeMirror-linenumbers {}
+.CodeMirror-linenumber {
+    padding: 0 3px 0 5px;
+    min-width: 20px;
+    text-align: right;
+    color: #999;
+    white-space: nowrap;
+}
+
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+
+/* CURSOR */
+
+.CodeMirror-cursor {
+    border-left: 1px solid black;
+    border-right: none;
+    width: 0;
+}
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor {
+    border-left: 1px solid silver;
+}
+.cm-fat-cursor .CodeMirror-cursor {
+    width: auto;
+    border: 0 !important;
+    background: #7e7;
+}
+.cm-fat-cursor div.CodeMirror-cursors {
+    z-index: 1;
+}
+.cm-fat-cursor-mark {
+    background-color: rgba(20, 255, 20, 0.5);
+    -webkit-animation: blink 1.06s steps(1) infinite;
+    -moz-animation: blink 1.06s steps(1) infinite;
+    animation: blink 1.06s steps(1) infinite;
+}
+.cm-animate-fat-cursor {
+    width: auto;
+    border: 0;
+    -webkit-animation: blink 1.06s steps(1) infinite;
+    -moz-animation: blink 1.06s steps(1) infinite;
+    animation: blink 1.06s steps(1) infinite;
+    background-color: #7e7;
+}
+@-moz-keyframes blink {
+    0% {}
+    50% { background-color: transparent; }
+    100% {}
+}
+@-webkit-keyframes blink {
+    0% {}
+    50% { background-color: transparent; }
+    100% {}
+}
+@keyframes blink {
+    0% {}
+    50% { background-color: transparent; }
+    100% {}
+}
+
+/* Can style cursor different in overwrite (non-insert) mode */
+.CodeMirror-overwrite .CodeMirror-cursor {}
+
+.cm-tab { display: inline-block; text-decoration: inherit; }
+
+.CodeMirror-rulers {
+    position: absolute;
+    left: 0; right: 0; top: -50px; bottom: 0;
+    overflow: hidden;
+}
+.CodeMirror-ruler {
+    border-left: 1px solid #ccc;
+    top: 0; bottom: 0;
+    position: absolute;
+}
+
+/* DEFAULT THEME */
+
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+
+.cm-s-default .cm-keyword {color: #708;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+
+.CodeMirror-composing { border-bottom: 2px solid; }
+
+/* Default styles for common addons */
+
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0b0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
+.CodeMirror-activeline-background {background: #e8f2ff;}
+
+/* STOP */
+
+/* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+
+.CodeMirror {
+    position: relative;
+    overflow: hidden;
+    background: white;
+}
+
+.CodeMirror-scroll {
+    overflow: scroll !important; /* Things will break if this is overridden */
+    /* 30px is the magic margin used to hide the element's real scrollbars */
+    /* See overflow: hidden in .CodeMirror */
+    margin-bottom: -30px; margin-right: -30px;
+    padding-bottom: 30px;
+    height: 100%;
+    outline: none; /* Prevent dragging from highlighting the element */
+    position: relative;
+}
+.CodeMirror-sizer {
+    position: relative;
+    border-right: 30px solid transparent;
+}
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actual scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+    position: absolute;
+    z-index: 6;
+    display: none;
+}
+.CodeMirror-vscrollbar {
+    right: 0; top: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+    bottom: 0; left: 0;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+    right: 0; bottom: 0;
+}
+.CodeMirror-gutter-filler {
+    left: 0; bottom: 0;
+}
+
+.CodeMirror-gutters {
+    position: absolute; left: 0; top: 0;
+    min-height: 100%;
+    z-index: 3;
+}
+.CodeMirror-gutter {
+    white-space: normal;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: -30px;
+}
+.CodeMirror-gutter-wrapper {
+    position: absolute;
+    z-index: 4;
+    background: none !important;
+    border: none !important;
+}
+.CodeMirror-gutter-background {
+    position: absolute;
+    top: 0; bottom: 0;
+    z-index: 4;
+}
+.CodeMirror-gutter-elt {
+    position: absolute;
+    cursor: default;
+    z-index: 4;
+}
+.CodeMirror-gutter-wrapper ::selection { background-color: transparent }
+.CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }
+
+.CodeMirror-lines {
+    cursor: text;
+    min-height: 1px; /* prevents collapsing before first draw */
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+    /* Reset some styles that the rest of the page might have set */
+    -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+    border-width: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    white-space: pre;
+    word-wrap: normal;
+    line-height: inherit;
+    color: inherit;
+    z-index: 2;
+    position: relative;
+    overflow: visible;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-variant-ligatures: contextual;
+    font-variant-ligatures: contextual;
+}
+.CodeMirror-wrap pre.CodeMirror-line,
+.CodeMirror-wrap pre.CodeMirror-line-like {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: normal;
+}
+
+.CodeMirror-linebackground {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    z-index: 0;
+}
+
+.CodeMirror-linewidget {
+    position: relative;
+    z-index: 2;
+    padding: 0.1px; /* Force widget margins to stay inside of the container */
+}
+
+.CodeMirror-widget {}
+
+.CodeMirror-rtl pre { direction: rtl; }
+
+.CodeMirror-code {
+    outline: none;
+}
+
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.CodeMirror-measure {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.CodeMirror-cursor {
+    position: absolute;
+    pointer-events: none;
+}
+.CodeMirror-measure pre { position: static; }
+
+div.CodeMirror-cursors {
+    visibility: hidden;
+    position: relative;
+    z-index: 3;
+}
+div.CodeMirror-dragcursors {
+    visibility: visible;
+}
+
+.CodeMirror-focused div.CodeMirror-cursors {
+    visibility: visible;
+}
+
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+.CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
+
+.cm-searching {
+    background-color: #ffa;
+    background-color: rgba(255, 255, 0, .4);
+}
+
+/* Used to force a border model for a node */
+.cm-force-border { padding-right: .1px; }
+
+@media print {
+    /* Hide the cursor when printing */
+    .CodeMirror div.CodeMirror-cursors {
+        visibility: hidden;
+    }
+}
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after { content: ''; }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }

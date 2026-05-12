@@ -1,0 +1,179 @@
+language: php
+
+os: linux
+dist: bionic
+sudo: required
+
+addons:
+  firefox: "47.0.1"
+  postgresql: "9.6"
+
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+      - openjdk-8-jre-headless
+      - chromium-chromedriver
+
+services:
+  - mysql
+  - docker
+#  - postgresql
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.npm
+
+# 3.8 require at least PHP 7.1-7.4 (since 3.8.3)
+# 3.9, 3.10: 7.2-7.4
+
+jobs:
+  include:
+    - name: 'master'
+      php: 7.4
+      env:
+        - MOODLE_BRANCH=master
+        - DB=mysqli
+
+    - name: 'Moodle 3.11'
+      php: 7.4
+      env:
+        - MOODLE_BRANCH=MOODLE_311_STABLE
+        - DB=pgsql
+
+    - name: 'Moodle 3.10'
+      php: 7.4
+      env:
+        - MOODLE_BRANCH=MOODLE_310_STABLE
+        - DB=pgsql
+
+    - name: 'Moodle 3.9'
+      php: 7.3
+      env:
+        - MOODLE_BRANCH=MOODLE_39_STABLE
+        - DB=mysqli
+
+    - name: 'Moodle 3.8 (Postgres)'
+      php: 7.2
+      env:
+        - MOODLE_BRANCH=MOODLE_38_STABLE
+        - DB=pgsql
+
+    - name: 'Moodle 3.8 (MySQL)'
+      php: 7.1
+      env:
+        - MOODLE_BRANCH=MOODLE_38_STABLE
+        - DB=mysqli
+
+env:
+  global:
+    - IGNORE_PATHS=tests
+
+before_install:
+  # This disables XDebug which should speed up the build.
+  - phpenv config-rm xdebug.ini
+  # This installs NodeJS which is used by Grunt, etc.
+  # - nvm install 14.3
+  # - nvm use 14.3
+  # Currently we are inside of the clone of your repository.  We move up two
+  # directories to build the project.
+  - cd ../..
+  # Install this project into a directory called "ci".
+  - composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^3
+  # - composer create-project -n --no-dev --prefer-dist blackboard-open-source/moodle-plugin-ci ci ^2
+  # Update the $PATH so scripts from this project can be called easily.
+  - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
+
+
+install:
+  # plugin requires special behaviour to run unit and behat tests
+  - moodle-plugin-ci add-plugin elearning-ostfalia/moodle-qbehaviour_adaptiveexternalgrading
+  - moodle-plugin-ci add-plugin elearning-ostfalia/moodle-qformat_proforma
+
+
+# Run the default install.  The overview of what this does:
+#    - Clone the Moodle project into a directory called moodle.
+#    - Create a data directory called moodledata.
+#    - Create Moodle config.php, database, etc.
+#    - Copy your plugin(s) into Moodle.
+#    - Run Composer install within Moodle.
+#    - Run NPM install in Moodle and in your plugin if it has a "package.json".
+#    - Run "grunt ignorefiles" within Moodle to update ignore file lists.
+#    - If your plugin has Behat features, then Behat will be setup.
+#    - If your plugin has unit tests, then PHPUnit will be setup.
+  - moodle-plugin-ci install
+# timeout must be increased for import feature
+  - moodle-plugin-ci add-config '$CFG->behat_increasetimeout = 2;'
+
+before_script:
+# diagnosis
+  - firefox --version
+  - /usr/lib/chromium-browser/chromedriver --version
+  - chromium-browser --version
+  - pwd
+  # /home/travis/build
+  - ls
+  # ci		    moodle	moodle-plugin-ci-plugins
+  #  elearning-ostfalia  moodledata	mtu.jsonpatch
+  # - java -jar ./moodle/selenium.jar --version (selenium is running then....)
+  # v2.53.1
+  # - netstat -an | grep -w 4444
+  - cat ./moodle/config.php
+
+
+
+
+# This lists steps that are run for the purposes of testing.  Any of
+# these steps can be re-ordered or removed to your liking.  And of
+# course, you can add any of your own custom steps.
+script:
+# This step runs the Behat tests of your plugin.  If your plugin has
+# Behat tests, then it is highly recommended that you keep this step.
+# There are two important options that you may want to use:
+#   - The auto rerun option allows you to rerun failures X number of times,
+#     default is 2, EG usage: --auto-rerun 3
+#   - The dump option allows you to print the failure HTML to the console,
+#     handy for debugging, EG usage: --dump
+#   - The suite option allows you to set the theme to use for behat test. If
+#     not specified, the default theme is used, EG usage: --suite boost
+#
+
+  # This step runs Moodle PHPDoc checker on your plugin.
+  #  - moodle-plugin-ci phpdoc
+  # This step runs the PHPUnit tests of your plugin.  If your plugin has
+  # PHPUnit tests, then it is highly recommended that you keep this step.
+  - moodle-plugin-ci phpunit
+
+  # run behat tests
+  - moodle-plugin-ci behat --auto-rerun 0
+
+  # This step lints your PHP files to check for syntax errors.
+  - moodle-plugin-ci phplint
+  # This step runs the PHP Copy/Paste Detector on your plugin.
+  # This helps to find code duplication.
+  - moodle-plugin-ci phpcpd
+  # This step runs the PHP Mess Detector on your plugin. This helps to find
+  # potential problems with your code which can result in
+  # refactoring opportunities.
+  - moodle-plugin-ci phpmd
+  # This step runs the Moodle Code Checker to make sure that your plugin
+  # conforms to the Moodle coding standards.  It is highly recommended
+  # that you keep this step.
+  - moodle-plugin-ci codechecker
+  # This step runs some light validation on the plugin file structure
+  # and code.  Validation can be plugin specific.
+  - moodle-plugin-ci validate
+  # This step validates your plugin's upgrade steps.
+  - moodle-plugin-ci savepoints
+  # This step validates the HTML and Javascript in your Mustache templates.
+  #  - moodle-plugin-ci mustache
+
+  # This step runs Grunt tasks on the plugin.  By default, it tries to run
+  # tasks relevant to your plugin and Moodle version, but you can run
+  # specific tasks by passing them as options,
+  # EG: moodle-plugin-ci grunt -t task1 -t task2
+  - moodle-plugin-ci grunt
+  # (disabled because of claiming stale javascript files)
+

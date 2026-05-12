@@ -1,0 +1,67 @@
+<?php
+///////////////////////////////////////////////////////////////////////////
+// Moodle configuration file for LMS with ProFormA                       //
+///////////////////////////////////////////////////////////////////////////
+
+unset($CFG);
+global $CFG;
+$CFG = new stdClass();
+
+//=========================================================================
+// 1. DATABASE SETUP
+//=========================================================================
+$CFG->dbtype    = 'mysqli';                 // Gunakan 'pgsql' jika pakai PostgreSQL
+$CFG->dblibrary = 'native';
+$CFG->dbhost    = 'localhost';
+$CFG->dbname    = 'moodle_lms';             // Nama database
+$CFG->dbuser    = 'YOUR_DB_USER';           // Ganti dengan username database kamu
+$CFG->dbpass    = 'YOUR_DB_PASSWORD';       // Ganti dengan password database kamu
+$CFG->prefix    = 'mdl_';
+$CFG->dboptions = [
+    'dbpersist' => false,
+    'dbsocket'  => false,
+    'dbport'    => '',
+    'dbcollation' => 'utf8mb4_unicode_ci',
+];
+
+//=========================================================================
+// 2. WEB SITE LOCATION
+//=========================================================================
+$CFG->wwwroot   = 'http://localhost:8080';
+
+//=========================================================================
+// 3. DATA FILES LOCATION
+//=========================================================================
+// Ganti dengan path folder data kamu (harus writable)
+$CFG->dataroot  = getenv('HOME') . '/moodledata';
+
+//=========================================================================
+// 4. DATA FILES PERMISSIONS
+//=========================================================================
+$CFG->directorypermissions = 02777;
+
+//=========================================================================
+// 5. ADMIN DIRECTORY
+//=========================================================================
+$CFG->admin = 'admin';
+
+//=========================================================================
+// 6. ADDITIONAL SETTINGS
+//=========================================================================
+// Timezone (sesuaikan dengan lokasi kamu)
+date_default_timezone_set('Asia/Jakarta');
+
+// Debug mode (matikan di production)
+$CFG->debug = E_ALL & ~E_NOTICE & ~E_USER_NOTICE;
+$CFG->debugdisplay = 0;
+
+// Allow grader URL - disable security for local dev
+$CFG->curlsecurityallowedport = '80,5001,8010,8080';
+$CFG->curlsecurityblockedhosts = '';
+$CFG->curlsecurityallowedlist = 'localhost,127.0.0.1';
+$CFG->disableurlblocking = true;
+
+// Disable email for local development
+$CFG->noemailever = true;
+
+require_once(__DIR__ . '/../lib/setup.php');
